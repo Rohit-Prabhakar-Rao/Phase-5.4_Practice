@@ -29,11 +29,11 @@ pipeline {
       }
     }
 
-    // stage('Create Docker Service') {
-    //   steps {
-    //     sh "sudo docker service create --name phase_5 --replicas 1 ${JD_IMAGE}"
-    //   }
-    // }
+    stage('Create Docker Service') {
+      steps {
+        sh "sudo docker service create --name phase_5 --replicas 1 ${JD_IMAGE}"
+      }
+    }
 
     // stage('Configure Container Networking') {
     //   steps {
@@ -44,15 +44,15 @@ pipeline {
     
     stage('Run Tests') {
       steps {
-        sh 'ng serve'
+        sh 'sudo docker service logs phase_5'
       }
     }
 
-    // stage('Cleanup') {
-    //   steps {
-    //     sh 'sudo docker service rm phase_5'
-    //     sh 'sudo docker network rm mynetwork'
-    //   }
-    // }
+    stage('Cleanup') {
+      steps {
+        sh 'sudo docker service rm phase_5'
+        sh 'sudo docker network rm mynetwork'
+      }
+    }
   }
 }
