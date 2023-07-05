@@ -44,7 +44,7 @@ pipeline {
     
     stage('Run Tests') {
       steps {
-        sh 'sudo docker service logs phase_5'
+        sh 'ng serve'
       }
     }
 
