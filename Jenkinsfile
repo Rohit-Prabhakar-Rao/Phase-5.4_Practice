@@ -48,11 +48,11 @@ pipeline {
       }
     }
 
-    // stage('Cleanup') {
-    //   steps {
-    //     sh 'sudo docker service rm phase_5'
-    //     sh 'sudo docker network rm mynetwork'
-    //   }
-    // }
+    stage('Cleanup') {
+      steps {
+        sh 'sudo docker service rm phase_5'
+        // sh 'sudo docker network rm mynetwork'
+      }
+    }
   }
 }
