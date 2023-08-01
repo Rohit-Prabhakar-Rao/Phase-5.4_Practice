@@ -76,7 +76,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${JD_IMAGE}:${BUILD_NUMBER}")
+                    sh "sudo docker build -t ${JD_IMAGE} ."
                 }
             }
         }
