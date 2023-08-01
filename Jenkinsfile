@@ -93,28 +93,28 @@ pipeline {
 
         stage('Configure Kubernetes') {
             steps {
-                sh 'sudo minikube status'
-                sh 'sudo kubectl config use-context minikube'
+                sh 'minikube status'
+                sh 'kubectl config use-context minikube'
             }
         }
 
         stage('Deploy to Minikube') {
             steps {
-                sh "sudo kubectl create deployment my-app --image=${JD_IMAGE}:${BUILD_NUMBER} --namespace=${K8S_NAMESPACE}"
-                sh "sudo kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
+                sh "kubectl create deployment my-app --image=${JD_IMAGE}:${BUILD_NUMBER} --namespace=${K8S_NAMESPACE}"
+                sh "kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'sudo kubectl get pods --namespace=${K8S_NAMESPACE}'
+                sh 'kubectl get pods --namespace=${K8S_NAMESPACE}'
                 // You can run additional tests or validation here
             }
         }
 
         stage('Cleanup') {
             steps {
-                sh "sudo kubectl delete service,deployment my-app --namespace=${K8S_NAMESPACE}"
+                sh "kubectl delete service,deployment my-app --namespace=${K8S_NAMESPACE}"
             }
         }
     }
