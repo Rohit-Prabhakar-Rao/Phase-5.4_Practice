@@ -64,6 +64,7 @@ pipeline {
     environment {
         JD_IMAGE = 'flamekaiserr/phase_5_4'
         K8S_NAMESPACE = 'default' // Replace 'default' with your Kubernetes namespace
+        registryCredential = '970d8df2-fffb-4375-9c21-191eda3f2bc9'
     }
     stages {
         stage('Clone Repository') {
