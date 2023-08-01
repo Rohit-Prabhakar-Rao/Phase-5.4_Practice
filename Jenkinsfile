@@ -83,8 +83,8 @@ pipeline {
         stage('Push Image to Docker Registry') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.example.com', 'registryCredential') {
-                        docker.push("${JD_IMAGE}:${BUILD_NUMBER}")
+                    docker.withRegistry('', registryCredential) {
+                    sh "sudo docker push ${JD_IMAGE}"
                     }
                 }
             }
