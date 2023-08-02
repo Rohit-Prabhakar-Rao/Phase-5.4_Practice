@@ -24,7 +24,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry('', registryCredential) {
-            sh "sudo docker push ${JD_IMAGE}"
+            sh "docker push ${JD_IMAGE}"
           }
         }
       }
