@@ -99,28 +99,28 @@ pipeline {
         //         sh 'kubectl config use-context minikube'
         //     }
         // }
-            stage('Configure Kubernetes') {
-          steps {
-              sh 'minikube start -p minikube'
-              sh 'minikube status'
-              sh 'kubectl config use-context minikube'
-          }
-      }
+      //       stage('Configure Kubernetes') {
+      //     steps {
+      //         sh 'minikube start -p minikube'
+      //         sh 'minikube status'
+      //         sh 'kubectl config use-context minikube'
+      //     }
+      // }
 
 
-        stage('Deploy to Minikube') {
-            steps {
-                sh "kubectl create deployment my-app --image=${JD_IMAGE} --namespace=${K8S_NAMESPACE}"
-                sh "kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
-            }
-        }
+      //   stage('Deploy to Minikube') {
+      //       steps {
+      //           sh "kubectl create deployment my-app --image=${JD_IMAGE} --namespace=${K8S_NAMESPACE}"
+      //           sh "kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
+      //       }
+      //   }
 
-        stage('Run Tests') {
-            steps {
-                sh 'kubectl get pods --namespace=${K8S_NAMESPACE}'
-                // You can run additional tests or validation here
-            }
-        }
+      //   stage('Run Tests') {
+      //       steps {
+      //           sh 'kubectl get pods --namespace=${K8S_NAMESPACE}'
+      //           // You can run additional tests or validation here
+      //       }
+      //   }
 
         stage('Cleanup') {
             steps {
