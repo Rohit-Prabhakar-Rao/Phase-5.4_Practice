@@ -91,14 +91,22 @@ pipeline {
             }
         }
 
-        stage('Configure Kubernetes') {
-            steps {
-                // sh 'minikube profile minikube'
-                sh 'minikube start -p minikube'
-                sh 'minikube status'
-                sh 'kubectl config use-context minikube'
-            }
-        }
+        // stage('Configure Kubernetes') {
+        //     steps {
+        //         // sh 'minikube profile minikube'
+        //         sh 'minikube start -p minikube'
+        //         sh 'minikube status'
+        //         sh 'kubectl config use-context minikube'
+        //     }
+        // }
+            stage('Configure Kubernetes') {
+          steps {
+              sh 'minikube start -p minikube --driver=virtualbox'
+              sh 'minikube status'
+              sh 'kubectl config use-context minikube'
+          }
+      }
+
 
         stage('Deploy to Minikube') {
             steps {
