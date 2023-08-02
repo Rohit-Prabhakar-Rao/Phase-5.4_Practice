@@ -100,7 +100,7 @@ pipeline {
 
         stage('Deploy to Minikube') {
             steps {
-                sh "kubectl create deployment my-app --image=${JD_IMAGE}:${BUILD_NUMBER} --namespace=${K8S_NAMESPACE}"
+                sh "kubectl create deployment my-app --image=${JD_IMAGE} --namespace=${K8S_NAMESPACE}"
                 sh "kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
             }
         }
