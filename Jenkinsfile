@@ -101,7 +101,7 @@ pipeline {
         // }
             stage('Configure Kubernetes') {
           steps {
-              sh 'minikube start -p minikube --driver=virtualbox'
+              sh 'minikube start -p minikube'
               sh 'minikube status'
               sh 'kubectl config use-context minikube'
           }
