@@ -93,7 +93,7 @@ pipeline {
 
         stage('Configure Kubernetes') {
             steps {
-                sh 'minikube profile set minikube'
+                sh 'minikube profile minikube'
                 sh 'minikube status'
                 sh 'kubectl config use-context minikube'
             }
