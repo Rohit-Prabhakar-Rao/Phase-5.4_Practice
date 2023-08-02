@@ -122,10 +122,10 @@ pipeline {
             }
         }
 
-        // stage('Cleanup') {
-        //     steps {
-        //         sh "kubectl delete service,deployment my-app --namespace=${K8S_NAMESPACE}"
-        //     }
-        // }
+        stage('Cleanup') {
+            steps {
+                sh "kubectl delete service,deployment my-app --namespace=${K8S_NAMESPACE}"
+            }
+        }
     }
 }
