@@ -123,6 +123,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
+                sh 'kubectl describe pods --namespace=${K8S_NAMESPACE}'
                 sh 'kubectl get pods --namespace=${K8S_NAMESPACE}'
                 // You can run additional tests or validation here
             }
