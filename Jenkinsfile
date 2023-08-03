@@ -112,6 +112,7 @@ pipeline {
             steps {
                 sh "kubectl create deployment my-app --image=${JD_IMAGE} --namespace=${K8S_NAMESPACE}"
                 sh "kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
+                sh "kubectl get deployments --namespace=${K8S_NAMESPACE}"
             }
         }
 
