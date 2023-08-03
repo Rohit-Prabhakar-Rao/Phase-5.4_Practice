@@ -106,12 +106,17 @@ pipeline {
       //         sh 'kubectl config use-context minikube'
       //     }
       // }
-
-
-        stage('Deploy to Minikube') {
+      
+       stage('Deploy to Kubernetes') {
             steps {
-                sh "kubectl create deployment my-app --image=${JD_IMAGE} --namespace=${K8S_NAMESPACE}"
-                sh "kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
+                sh "kubectl apply -f deployment.yaml --namespace=${K8S_NAMESPACE}"
+            }
+        }
+      
+       stage('Deploy to Minikube') {
+            steps {
+                // sh "kubectl create deployment my-app --image=${JD_IMAGE} --namespace=${K8S_NAMESPACE}"
+                // sh "kubectl expose deployment my-app --port=80 --type=LoadBalancer --namespace=${K8S_NAMESPACE}"
                 sh "kubectl get deployments --namespace=${K8S_NAMESPACE}"
             }
         }
