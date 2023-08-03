@@ -112,6 +112,12 @@ pipeline {
                 sh "kubectl apply -f deployment.yaml --namespace=${K8S_NAMESPACE}"
             }
         }
+
+      stage('Wait for Pods to Start') {
+            steps {
+                sleep 30 // Add a 30-second delay here
+            }
+        }
       
        stage('Deploy to Minikube') {
             steps {
@@ -123,6 +129,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
+                sh 'kubectl get pods'
                 sh 'kubectl describe pods --namespace=${K8S_NAMESPACE}'
                 sh 'kubectl get pods --namespace=${K8S_NAMESPACE}'
                 // You can run additional tests or validation here
