@@ -117,7 +117,7 @@ pipeline {
 
       stage('Wait for Pods to Start') {
             steps {
-                sleep 30 // Add a 30-second delay here
+                sleep 60 // Add a 30-second delay here
             }
         }
       
